@@ -1,47 +1,100 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { Menu, Info, Volume2, Wifi } from 'lucide-vue-next';
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div id="backgroundImage">
+      <div id="sideBar">
+        <div id="topItems">
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+          <span class="icon">
+  <Menu 
+    color="black"
+    :size="60"
+  />
+</span>
 
-  <main>
-    <TheWelcome />
-  </main>
+<span class="icon">
+  <Info 
+    color="white"
+    :size="42"
+  />
+</span>
+          
+
+         
+        
+        </div>
+
+        <div id="bottomItems">
+          <span class="icon">
+            <Volume2
+            color="black"
+    :size="42"
+            />
+          </span>
+
+          <span class="icon">
+            <Wifi 
+            color="black"
+    :size="42"
+            />
+
+          </span>
+
+          <span class="icon">
+            <p id="time">14:40</p>
+          </span>
+         
+
+        </div>
+      </div>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
-@media (min-width: 1024px) {
-  header {
+#backgroundImage {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../src/assets/background.png');
+  background-size: cover;
+  background-position: center;
+
+  #sideBar{
+    height: 100vh;
+    width: 7.5%;
+    background-color: rgba(217, 217, 217, 0.4);
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+
+    #topItems, #bottomItems{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .icon{
+        padding: 5px;
+        #time{
+          font: 30px;
+          font-weight: 700;
+          color: black;
+        }
+      }
+    }
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
 }
+
 </style>
