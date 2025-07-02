@@ -45,7 +45,7 @@ import {
             <span class="icon">x</span>
           </button>
           <button id="minimizeIcon">
-            <span class="icon">-</span>
+            <span class="icon">–</span>
           </button>
           <button id="expandIcon">
             <span class="icon"><></span>
@@ -75,6 +75,29 @@ import {
         <div id="resumeBox" class="box">
           <FileUser color="white" :size="45" />
           <p>Resume</p>
+        </div>
+      </div>
+
+      <div id="underTitle">
+        <span>
+          <p>Cool projects I have built or attended:</p>
+        </span>
+      </div>
+
+      <div id="projects">
+        <div class="projectBox">
+          <div id="techieChenIcon"></div>
+          <div id="textBox">
+            <div id="upperTitle">
+              <p id="textRowOne">Techie Chen</p>
+              <p id="textRowTwo">
+                Techie Chen is a website that brings it services at home.
+              </p>
+            </div>
+           
+             <p id="checkTechieChen">Check website</p>
+            
+          </div>
         </div>
       </div>
     </div>
@@ -243,7 +266,7 @@ body {
         }
       }
 
-      #empty{
+      #empty {
         background-color: aqua;
       }
 
@@ -256,6 +279,70 @@ body {
         p {
           font-weight: 700;
           color: white;
+        }
+      }
+    }
+
+    #underTitle {
+      padding-top: 2em;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60%;
+        p {
+          text-align: center;
+          color: black;
+          font-size: 2.5em;
+          font-weight: 700;
+        }
+      }
+    }
+
+    #projects {
+      padding-top: 2.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .projectBox {
+        width: 75%;
+        display: flex;
+        justify-content: center;
+        height: 10em;
+        #techieChenIcon {
+          border-radius: 30%;
+          height: 100%;
+          width: 20%;
+          background-image: url("../src/assets/techiechen.jpg");
+          background-size: cover;
+          background-position: center;
+        }
+        #textBox {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 1em;
+          #upperTitle {
+            color: black;
+            #textRowOne {
+              font-size: 20px;
+              font-weight: 700;
+            }
+            #textRowTwo {
+              font-size: 1em;
+              font-weight: 500;
+            }
+          }
+          #checkTechieChen{
+            color: black;
+            font-weight: 600;
+            text-decoration: underline;
+          }
+          
         }
       }
     }
