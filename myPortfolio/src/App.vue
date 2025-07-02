@@ -1,5 +1,13 @@
 <script setup>
-import { Menu, Info, Volume2, Wifi } from "lucide-vue-next";
+import {
+  Menu,
+  Info,
+  Volume2,
+  Wifi,
+  Github,
+  Linkedin,
+  FileUser,
+} from "lucide-vue-next";
 </script>
 
 <template>
@@ -44,6 +52,30 @@ import { Menu, Info, Volume2, Wifi } from "lucide-vue-next";
           </button>
         </span>
         <p>My projects</p>
+      </div>
+
+      <div id="title">
+        <span>
+          <p>Hello my name is Jun, nice to meet you! 👋🚀</p>
+        </span>
+      </div>
+
+      <div id="linkBoxses">
+        <div id="github" class="box">
+          <Github color="black" :size="45" />
+          <p>Mela2k</p>
+        </div>
+        <div id="profilePicture" class="box"></div>
+        <div id="empty" class="box"></div>
+        <div id="linkedinBox" class="box">
+          <Linkedin color="white" :size="45" />
+          <p>My Linkedin</p>
+        </div>
+        <div id="empty" class="box"></div>
+        <div id="resumeBox" class="box">
+          <FileUser color="white" :size="45" />
+          <p>Resume</p>
+        </div>
       </div>
     </div>
   </div>
@@ -105,7 +137,7 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      p{
+      p {
         font-size: 2em;
         font-weight: 700;
       }
@@ -138,7 +170,92 @@ body {
         }
 
         #expandIcon {
-           background-color: rgba(64, 231, 14, 0.5);
+          background-color: rgba(64, 231, 14, 0.5);
+        }
+      }
+    }
+
+    #title {
+      padding-top: 2em;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60%;
+        p {
+          text-align: center;
+          color: black;
+          font-size: 2.5em;
+          font-weight: 700;
+        }
+      }
+    }
+
+    #linkBoxses {
+      padding-top: 2em;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 120px);
+      grid-template-rows: repeat(2, 120px);
+      gap: 24px;
+      justify-content: center;
+      align-items: center;
+
+      .box {
+        border-radius: 1em;
+        width: 120px;
+        height: 120px;
+        background-color: rgb(255, 255, 255);
+        border: 4px black solid;
+      }
+
+      #github {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        p {
+          font-size: 1em;
+          color: black;
+          font-weight: 700;
+        }
+      }
+
+      #profilePicture {
+        background-image: url("../src/assets/profilePicture.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      #linkedinBox {
+        background-color: rgb(25, 7, 124);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: none;
+        p {
+          font-weight: 500;
+        }
+      }
+
+      #empty{
+        background-color: aqua;
+      }
+
+      #resumeBox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: black;
+        p {
+          font-weight: 700;
+          color: white;
         }
       }
     }
