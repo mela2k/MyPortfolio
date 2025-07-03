@@ -7,6 +7,7 @@ import {
   Github,
   Linkedin,
   FileUser,
+  Youtube,
 } from "lucide-vue-next";
 </script>
 
@@ -66,7 +67,10 @@ import {
           <p>Mela2k</p>
         </div>
         <div id="profilePicture" class="box"></div>
-        <div id="empty" class="box"></div>
+        <div id="youtube" class="box">
+          <Youtube color="white" :size="45" />
+          <p>@Sogasptr</p>
+        </div>
         <div id="linkedinBox" class="box">
           <Linkedin color="white" :size="45" />
           <p>My Linkedin</p>
@@ -91,12 +95,12 @@ import {
             <div id="upperTitle">
               <p id="textRowOne">Techie Chen</p>
               <p id="textRowTwo">
-                Techie Chen is a website that brings it services at home.
+                Techie Chen is a website that connects customers with it at
+                home.
               </p>
             </div>
-           
-             <p id="checkTechieChen">Check website</p>
-            
+
+            <p id="checkTechieChen">Check website</p>
           </div>
         </div>
       </div>
@@ -154,6 +158,7 @@ body {
     height: 100vh;
     width: 50vw;
     background-color: rgba(217, 217, 217, 0.4);
+    overflow-y: auto;
     #topBar {
       background-color: rgba(0, 0, 0, 0.5);
       position: relative;
@@ -266,6 +271,18 @@ body {
         }
       }
 
+      #youtube {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: red;
+        p {
+          font-weight: 400;
+          color: white;
+        }
+      }
+
       #empty {
         background-color: aqua;
       }
@@ -308,6 +325,7 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       .projectBox {
         width: 75%;
         display: flex;
@@ -337,12 +355,11 @@ body {
               font-weight: 500;
             }
           }
-          #checkTechieChen{
+          #checkTechieChen {
             color: black;
             font-weight: 600;
             text-decoration: underline;
           }
-          
         }
       }
     }
