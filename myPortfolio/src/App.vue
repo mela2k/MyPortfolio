@@ -9,6 +9,28 @@ import {
   FileUser,
   Youtube,
 } from "lucide-vue-next";
+import { ref, onMounted, onUnmounted } from "vue";
+
+// time functions
+const time = ref("");
+
+function updateTime() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+  time.value = `${hours}:${minutes}`;
+  console.log(`${hours}:${minutes}`)
+}
+
+let intervalId;
+
+onMounted(() => {
+  updateTime(); 
+  intervalId = setInterval(updateTime, 1000 * 60); 
+});
+
+
+
 </script>
 
 <template>
@@ -34,7 +56,7 @@ import {
         </span>
 
         <span class="icon">
-          <p id="time">14:40</p>
+          <p id="time">{{ time }}</p>
         </span>
       </div>
     </div>
@@ -146,7 +168,7 @@ body {
       .icon {
         padding: 5px;
         #time {
-          font: 30px;
+          font-size: 20px;
           font-weight: 700;
           color: black;
         }
