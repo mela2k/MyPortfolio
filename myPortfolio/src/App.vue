@@ -11,11 +11,22 @@ import {
 } from "lucide-vue-next";
 import { ref, onMounted, onUnmounted } from "vue";
 
-// audio functions 
+// connection functions
+const showQR = ref(false);
+
+function showQRToTrue() {
+  showQR.value = true;
+}
+
+function showQRToFalse() {
+  showQR.value = false;
+}
+
+// audio functions
 const sound = new Audio("/sounds/voiceOver.mp3");
 
 function playSound() {
-  sound.currentTime = 0; 
+  sound.currentTime = 0;
   sound.play();
 }
 
@@ -52,7 +63,7 @@ onMounted(() => {
       </div>
 
       <div id="bottomItems">
-        <span class="icon">
+        <span id="wifiIcon" class="icon" @click="showQRToTrue()">
           <Wifi color="black" :size="42" />
         </span>
 
@@ -66,7 +77,15 @@ onMounted(() => {
       </div>
     </div>
 
-    <div id="qrPanel">
+    <div v-if="showQR" id="qrPanel">
+      <div id="qrControls">
+        <button id="closeIcon" @click="showQRToFalse()">
+          <span class="icon">x</span>
+        </button>
+        <button id="minimizeIcon" @click="showQRToFalse()" >
+          <span class="icon">–</span>
+        </button>
+      </div>
       <h2>CONNECT WITH ME</h2>
       <img
         src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=mailto:j.chen2000_@hotmail.com"
@@ -152,6 +171,12 @@ body {
   padding: 0;
 }
 
+@keyframes spin{
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
 #backgroundImage {
   width: 100vw;
   height: 100vh;
@@ -188,11 +213,13 @@ body {
         }
       }
 
-      #volumeIcon:hover{
+      #wifiIcon:hover {
         cursor: pointer;
       }
 
-
+      #volumeIcon:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -208,6 +235,43 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
+    animation-duration: 1s;
+    animation-name: spin;
+    #qrControls {
+      width: 100%;
+      left: 1em;
+      display: flex;
+      gap: 5px;
+      button {
+        display: flex;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: none;
+        .icon {
+          font-style: italic;
+          font-weight: 700;
+        }
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+
+      #closeIcon {
+        background-color: rgba(228, 56, 56, 0.5);
+      }
+
+      #minimizeIcon {
+        background-color: rgba(247, 243, 8, 0.5);
+      }
+
+      #expandIcon {
+        background-color: rgba(64, 231, 14, 0.5);
+      }
+    }
     img {
       border-radius: 10%;
       margin: 1em 0;
