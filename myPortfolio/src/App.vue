@@ -11,6 +11,14 @@ import {
 } from "lucide-vue-next";
 import { ref, onMounted, onUnmounted } from "vue";
 
+// audio functions 
+const sound = new Audio("/sounds/voiceOver.mp3");
+
+function playSound() {
+  sound.currentTime = 0; 
+  sound.play();
+}
+
 // time functions
 const time = ref("");
 
@@ -19,18 +27,15 @@ function updateTime() {
   const hours = String(now.getHours()).padStart(2, "0");
   const minutes = String(now.getMinutes()).padStart(2, "0");
   time.value = `${hours}:${minutes}`;
-  console.log(`${hours}:${minutes}`)
+  console.log(`${hours}:${minutes}`);
 }
 
 let intervalId;
 
 onMounted(() => {
-  updateTime(); 
-  intervalId = setInterval(updateTime, 1000 * 60); 
+  updateTime();
+  intervalId = setInterval(updateTime, 1000 * 60);
 });
-
-
-
 </script>
 
 <template>
@@ -48,17 +53,26 @@ onMounted(() => {
 
       <div id="bottomItems">
         <span class="icon">
-          <Volume2 color="black" :size="42" />
+          <Wifi color="black" :size="42" />
         </span>
 
-        <span class="icon">
-          <Wifi color="black" :size="42" />
+        <span id="volumeIcon" class="icon" @click="playSound()">
+          <Volume2 color="black" :size="42" />
         </span>
 
         <span class="icon">
           <p id="time">{{ time }}</p>
         </span>
       </div>
+    </div>
+
+    <div id="qrPanel">
+      <h2>CONNECT WITH ME</h2>
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=mailto:j.chen2000_@hotmail.com"
+        alt="QR code"
+      />
+      <p>Scan de QR-code to send me an email</p>
     </div>
 
     <div id="informationBar">
@@ -173,6 +187,40 @@ body {
           color: black;
         }
       }
+
+      #volumeIcon:hover{
+        cursor: pointer;
+      }
+
+
+    }
+  }
+
+  #qrPanel {
+    bottom: 10em;
+    left: 10em;
+    padding: 1.5em;
+    border-radius: 1em;
+    position: absolute;
+    background-color: rgba(217, 217, 217, 0.4);
+    color: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    img {
+      border-radius: 10%;
+      margin: 1em 0;
+    }
+    img:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+    h2 {
+      font-weight: 600;
+    }
+    p {
+      font-weight: 400;
     }
   }
 
