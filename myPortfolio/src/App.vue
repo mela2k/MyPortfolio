@@ -77,20 +77,40 @@ onMounted(() => {
       </div>
     </div>
 
+    <div id="colorModePanel">
+      <div id="colorModeControls">
+        <button id="closeIcon">
+          <span class="icon">x</span>
+        </button>
+        <button id="minimizeIcon">
+          <span class="icon">–</span>
+        </button>
+      </div>
+      <h2>Choose a color theme:</h2>
+      <div id="themeColors">
+        <div id="themeOriginal" class="themeColor"></div>
+        <div id="themeGreen" class="themeColor"></div>
+        <div id="themeDark" class="themeColor"></div>
+        <div id="themeBlue" class="themeColor"></div>
+      </div>
+    </div>
+
     <div v-if="showQR" id="qrPanel">
       <div id="qrControls">
         <button id="closeIcon" @click="showQRToFalse()">
           <span class="icon">x</span>
         </button>
-        <button id="minimizeIcon" @click="showQRToFalse()" >
+        <button id="minimizeIcon" @click="showQRToFalse()">
           <span class="icon">–</span>
         </button>
       </div>
       <h2>CONNECT WITH ME</h2>
-      <img
-        src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=mailto:j.chen2000_@hotmail.com"
-        alt="QR code"
-      />
+      <div id="qrBox">
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=mailto:j.chen2000_@hotmail.com"
+          alt="QR code"
+        />
+      </div>
       <p>Scan de QR-code to send me an email</p>
     </div>
 
@@ -171,8 +191,8 @@ body {
   padding: 0;
 }
 
-@keyframes spin{
-  100%{
+@keyframes spin {
+  100% {
     transform: rotate(360deg);
   }
 }
@@ -213,12 +233,80 @@ body {
         }
       }
 
-      #wifiIcon:hover {
+      .icon:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  #colorModePanel {
+    background-color: rgba(217, 217, 217, 0.4);
+    position: absolute;
+    top: 2.5em;
+    left: 10em;
+    border-radius: 1em;
+    #colorModeControls {
+      gap: 5px;
+      padding: 0.5em;
+      border-top-left-radius: 1em;
+      border-top-right-radius: 1em;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+
+      button {
+        display: flex;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: none;
+        .icon {
+          font-style: italic;
+          font-weight: 700;
+        }
+      }
+
+      button:hover {
         cursor: pointer;
       }
 
-      #volumeIcon:hover {
+      #closeIcon {
+        background-color: rgba(228, 56, 56, 0.5);
+      }
+
+      #minimizeIcon {
+        background-color: rgba(247, 243, 8, 0.5);
+      }
+    }
+
+    h2 {
+      padding: 0.5em;
+      padding-bottom: 0;
+      color: black;
+    }
+
+    #themeColors {
+      padding-top: 0;
+      padding: 1em;
+      display: flex;
+      gap: 5px;
+      .themeColor {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
         cursor: pointer;
+      }
+      #themeOriginal {
+        background-color: rgba(217, 217, 217, 0.4);
+      }
+      #themeGreen {
+        background-color: rgb(110, 172, 129);
+      }
+      #themeDark {
+        background-color: rgb(71, 60, 60);
+      }
+      #themeBlue {
+        background-color: rgb(157, 157, 240);
       }
     }
   }
@@ -226,7 +314,6 @@ body {
   #qrPanel {
     bottom: 10em;
     left: 10em;
-    padding: 1.5em;
     border-radius: 1em;
     position: absolute;
     background-color: rgba(217, 217, 217, 0.4);
@@ -239,6 +326,10 @@ body {
     animation-duration: 1s;
     animation-name: spin;
     #qrControls {
+      padding: 0.5em;
+      border-top-left-radius: 1em;
+      border-top-right-radius: 1em;
+      background-color: rgba(0, 0, 0, 0.5);
       width: 100%;
       left: 1em;
       display: flex;
@@ -267,23 +358,23 @@ body {
       #minimizeIcon {
         background-color: rgba(247, 243, 8, 0.5);
       }
-
-      #expandIcon {
-        background-color: rgba(64, 231, 14, 0.5);
+    }
+    #qrBox {
+      background-color: white;
+      padding: 1em;
+      border-radius: 10%;
+      img:hover {
+        transform: scale(1.05);
+        cursor: pointer;
       }
     }
-    img {
-      border-radius: 10%;
-      margin: 1em 0;
-    }
-    img:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
+
     h2 {
       font-weight: 600;
     }
     p {
+      padding: 1em;
+      font-size: 1em;
       font-weight: 400;
     }
   }
