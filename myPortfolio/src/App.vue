@@ -1,6 +1,5 @@
 <script setup>
 import {
-  Menu,
   Info,
   Volume2,
   Wifi,
@@ -8,10 +7,12 @@ import {
   Linkedin,
   FileUser,
   Youtube,
+  Palette
 } from "lucide-vue-next";
 import { ref, onMounted, onUnmounted } from "vue";
 
-// connection functions
+
+// Show qr code panel
 const showQR = ref(false);
 
 function showQRToTrue() {
@@ -20,6 +21,17 @@ function showQRToTrue() {
 
 function showQRToFalse() {
   showQR.value = false;
+}
+
+// Show colormode panel
+const showColorMode = ref(false);
+
+function showColorModeToTrue() {
+  showColorMode.value = true;
+}
+
+function showColorModeToFalse() {
+  showColorMode.value = false;
 }
 
 // audio functions
@@ -53,12 +65,12 @@ onMounted(() => {
   <div id="backgroundImage">
     <div id="sideBar">
       <div id="topItems">
-        <span class="icon">
-          <Menu color="black" :size="60" />
+        <span class="icon" @click="showColorModeToTrue()">
+          <Palette color="black" :size="42" />
         </span>
 
         <span class="icon">
-          <Info color="white" :size="42" />
+          <Info color="black" :size="42" />
         </span>
       </div>
 
@@ -77,12 +89,12 @@ onMounted(() => {
       </div>
     </div>
 
-    <div id="colorModePanel">
+    <div v-if="showColorMode" id="colorModePanel">
       <div id="colorModeControls">
-        <button id="closeIcon">
+        <button id="closeIcon" @click="showColorModeToFalse()">
           <span class="icon">x</span>
         </button>
-        <button id="minimizeIcon">
+        <button id="minimizeIcon" @click="showColorModeToFalse()">
           <span class="icon">–</span>
         </button>
       </div>
@@ -197,6 +209,15 @@ body {
   }
 }
 
+@keyframes slide-right {
+   from {
+    transform: translateY(-300px);
+  }
+  to {
+    transform: translateY(0); 
+  }
+}
+
 #backgroundImage {
   width: 100vw;
   height: 100vh;
@@ -245,6 +266,9 @@ body {
     top: 2.5em;
     left: 10em;
     border-radius: 1em;
+    animation-duration: 1s;
+    animation-name: slide-right;
+    
     #colorModeControls {
       gap: 5px;
       padding: 0.5em;
@@ -252,6 +276,7 @@ body {
       border-top-right-radius: 1em;
       background-color: rgba(0, 0, 0, 0.5);
       display: flex;
+
 
       button {
         display: flex;
