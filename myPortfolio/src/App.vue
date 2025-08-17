@@ -50,7 +50,6 @@ function updateTime() {
   const hours = String(now.getHours()).padStart(2, "0");
   const minutes = String(now.getMinutes()).padStart(2, "0");
   time.value = `${hours}:${minutes}`;
-  console.log(`${hours}:${minutes}`);
 }
 
 let intervalId;
@@ -59,6 +58,28 @@ onMounted(() => {
   updateTime();
   intervalId = setInterval(updateTime, 1000 * 60);
 });
+
+// links to github, youtube, linkedin, and resume etc
+const gitHubUrl = "https://github.com/mela2k?tab=repositories";
+const youtubeUrl = "https://www.youtube.com/@Sogasptr";
+const linkedinUrl = "https://www.linkedin.com/in/m-junchen/"
+const resumeUrl = "https://drive.google.com/file/d/1aVqvy_r0Lk4kmNjrjahPjLt8Pb2k0UI0/view?usp=drive_link";
+
+function openGithub(){
+  window.open(gitHubUrl, "_blank");
+}
+
+function openYoutube(){
+  window.open(youtubeUrl, "_blank");
+}
+
+function openLinkedin(){
+  window.open(linkedinUrl, "_blank");
+}
+
+function openResume(){
+  window.open(resumeUrl, "_blank");
+}
 </script>
 
 <template>
@@ -149,21 +170,21 @@ onMounted(() => {
       </div>
 
       <div id="linkBoxses">
-        <div id="github" class="box">
+        <div id="github" class="box" @click="openGithub">
           <Github color="black" :size="45" />
           <p>Mela2k</p>
         </div>
         <div id="profilePicture" class="box"></div>
-        <div id="youtube" class="box">
+        <div id="youtube" class="box" @click="openYoutube">
           <Youtube color="white" :size="45" />
           <p>@Sogasptr</p>
         </div>
-        <div id="linkedinBox" class="box">
+        <div id="linkedinBox" class="box" @click="openLinkedin">
           <Linkedin color="white" :size="45" />
           <p>My Linkedin</p>
         </div>
         <div id="empty" class="box"></div>
-        <div id="resumeBox" class="box">
+        <div id="resumeBox" class="box" @click="openResume">
           <FileUser color="white" :size="45" />
           <p>Resume</p>
         </div>
@@ -182,7 +203,7 @@ onMounted(() => {
             <div id="upperTitle">
               <p id="textRowOne">Techie Chen</p>
               <p id="textRowTwo">
-                Techie Chen is a website that connects customers with it at
+                Techie Chen is a website that connects customers with computer students at
                 home.
               </p>
             </div>
@@ -488,7 +509,12 @@ body {
         width: 120px;
         height: 120px;
         background-color: rgb(255, 255, 255);
-        border: 4px black solid;
+        border: 2px black solid;
+      }
+
+      .box:hover {
+        cursor: pointer;
+        transform: scale(1.05);
       }
 
       #github {
