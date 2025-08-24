@@ -7,10 +7,9 @@ import {
   Linkedin,
   FileUser,
   Youtube,
-  Palette
+  Palette,
 } from "lucide-vue-next";
 import { ref, onMounted, onUnmounted } from "vue";
-
 
 // Show qr code panel
 const showQR = ref(false);
@@ -62,23 +61,49 @@ onMounted(() => {
 // links to github, youtube, linkedin, and resume etc
 const gitHubUrl = "https://github.com/mela2k?tab=repositories";
 const youtubeUrl = "https://www.youtube.com/@Sogasptr";
-const linkedinUrl = "https://www.linkedin.com/in/m-junchen/"
-const resumeUrl = "https://drive.google.com/file/d/1aVqvy_r0Lk4kmNjrjahPjLt8Pb2k0UI0/view?usp=drive_link";
+const linkedinUrl = "https://www.linkedin.com/in/m-junchen/";
+const resumeUrl =
+  "https://drive.google.com/file/d/1aVqvy_r0Lk4kmNjrjahPjLt8Pb2k0UI0/view?usp=drive_link";
 
-function openGithub(){
+function openGithub() {
   window.open(gitHubUrl, "_blank");
 }
 
-function openYoutube(){
+function openYoutube() {
   window.open(youtubeUrl, "_blank");
 }
 
-function openLinkedin(){
+function openLinkedin() {
   window.open(linkedinUrl, "_blank");
 }
 
-function openResume(){
+function openResume() {
   window.open(resumeUrl, "_blank");
+}
+
+// Color theme functions
+const currentTheme = ref("themeOriginal");
+
+function setTheme(theme) {
+  currentTheme.value = theme;
+  let color;
+  switch (theme) {
+    case "themeOriginal":
+      color = "rgba(217, 217, 217, 0.4)";
+      break;
+    case "themeGreen":
+      color = "rgb(110, 172, 129)";
+      break;
+    case "themeRed":
+      color = " rgb(251, 118, 118)";
+      break;
+    case "themeBlue":
+      color = "rgb(157, 157, 240)";
+      break;
+    default:
+      color = "rgba(217, 217, 217, 0.4)";
+  }
+  document.documentElement.style.setProperty("--theme-color", color);
 }
 </script>
 
@@ -121,10 +146,26 @@ function openResume(){
       </div>
       <h2>Choose a color theme:</h2>
       <div id="themeColors">
-        <div id="themeOriginal" class="themeColor"></div>
-        <div id="themeGreen" class="themeColor"></div>
-        <div id="themeDark" class="themeColor"></div>
-        <div id="themeBlue" class="themeColor"></div>
+        <div
+          id="themeOriginal"
+          class="themeColor"
+          @click="setTheme('themeOriginal')"
+        ></div>
+        <div
+          id="themeGreen"
+          class="themeColor"
+          @click="setTheme('themeGreen')"
+        ></div>
+        <div
+          id="themeRed"
+          class="themeColor"
+          @click="setTheme('themeRed')"
+        ></div>
+        <div
+          id="themeBlue"
+          class="themeColor"
+          @click="setTheme('themeBlue')"
+        ></div>
       </div>
     </div>
 
@@ -160,7 +201,7 @@ function openResume(){
             <span class="icon"><></span>
           </button>
         </span>
-        <p>My projects</p>
+        <p>Jun Portfolio</p>
       </div>
 
       <div id="title">
@@ -203,8 +244,8 @@ function openResume(){
             <div id="upperTitle">
               <p id="textRowOne">Techie Chen</p>
               <p id="textRowTwo">
-                Techie Chen is a website that connects customers with computer students at
-                home.
+                Techie Chen is a website that connects customers with computer
+                students at home.
               </p>
             </div>
 
@@ -216,12 +257,16 @@ function openResume(){
   </div>
 </template>
 
-<style scoped>
+<style>
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+:root {
+  --theme-color: rgba(217, 217, 217, 0.4);
 }
 
 @keyframes spin {
@@ -231,11 +276,11 @@ body {
 }
 
 @keyframes slide-right {
-   from {
+  from {
     transform: translateY(-300px);
   }
   to {
-    transform: translateY(0); 
+    transform: translateY(0);
   }
 }
 
@@ -254,7 +299,8 @@ body {
     left: 0;
     height: 100vh;
     width: 7.5%;
-    background-color: rgba(217, 217, 217, 0.4);
+    background-color: var(--theme-color);
+
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -282,14 +328,15 @@ body {
   }
 
   #colorModePanel {
-    background-color: rgba(217, 217, 217, 0.4);
+    background-color: var(--theme-color);
+
     position: absolute;
     top: 2.5em;
     left: 10em;
     border-radius: 1em;
     animation-duration: 1s;
     animation-name: slide-right;
-    
+
     #colorModeControls {
       gap: 5px;
       padding: 0.5em;
@@ -297,7 +344,6 @@ body {
       border-top-right-radius: 1em;
       background-color: rgba(0, 0, 0, 0.5);
       display: flex;
-
 
       button {
         display: flex;
@@ -346,13 +392,13 @@ body {
         background-color: rgba(217, 217, 217, 0.4);
       }
       #themeGreen {
-        background-color: rgb(110, 172, 129);
+        background-color: rgb(94, 233, 136);
       }
-      #themeDark {
-        background-color: rgb(71, 60, 60);
+      #themeRed {
+        background-color: rgb(217, 77, 77);
       }
       #themeBlue {
-        background-color: rgb(157, 157, 240);
+        background-color: rgb(107, 107, 198);
       }
     }
   }
@@ -429,6 +475,8 @@ body {
     height: 100vh;
     width: 50vw;
     background-color: rgba(217, 217, 217, 0.4);
+    background-color: var(--theme-color);
+
     overflow-y: auto;
     #topBar {
       background-color: rgba(0, 0, 0, 0.5);
