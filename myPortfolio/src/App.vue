@@ -64,7 +64,7 @@ const youtubeUrl = "https://www.youtube.com/@Sogasptr";
 const linkedinUrl = "https://www.linkedin.com/in/m-junchen/";
 const resumeUrl =
   "https://drive.google.com/file/d/1aVqvy_r0Lk4kmNjrjahPjLt8Pb2k0UI0/view?usp=drive_link";
-
+const techieChenUrl = "https://www.techiechen.nl/"
 function openGithub() {
   window.open(gitHubUrl, "_blank");
 }
@@ -81,6 +81,10 @@ function openResume() {
   window.open(resumeUrl, "_blank");
 }
 
+function openTechieChen() {
+  window.open(techieChenUrl, "_blank");
+}
+
 // Color theme functions
 const currentTheme = ref("themeOriginal");
 
@@ -92,13 +96,13 @@ function setTheme(theme) {
       color = "rgba(217, 217, 217, 0.4)";
       break;
     case "themeGreen":
-      color = "rgb(110, 172, 129)";
+      color = "rgba(110, 172, 129, 0.6)";
       break;
     case "themeRed":
-      color = " rgb(251, 118, 118)";
+      color = " rgba(251, 118, 118, 0.6)";
       break;
     case "themeBlue":
-      color = "rgb(157, 157, 240)";
+      color = "rgba(157, 157, 240, 0.6)";
       break;
     default:
       color = "rgba(217, 217, 217, 0.4)";
@@ -238,7 +242,7 @@ function setTheme(theme) {
       </div>
 
       <div id="projects">
-        <div class="projectBox">
+        <div class="projectBox" id="techieChenProject">
           <div id="techieChenIcon"></div>
           <div id="textBox">
             <div id="upperTitle">
@@ -249,9 +253,11 @@ function setTheme(theme) {
               </p>
             </div>
 
-            <p id="checkTechieChen">Check website</p>
+            <p id="checkTechieChen" @click="openTechieChen">Check website</p>
           </div>
         </div>
+
+        
       </div>
     </div>
   </div>
@@ -392,13 +398,13 @@ body {
         background-color: rgba(217, 217, 217, 0.4);
       }
       #themeGreen {
-        background-color: rgb(94, 233, 136);
+        background-color: rgb(154, 237, 179, 0.6);
       }
       #themeRed {
-        background-color: rgb(217, 77, 77);
+        background-color: rgba(217, 77, 77, 0.6);
       }
       #themeBlue {
-        background-color: rgb(107, 107, 198);
+        background-color: rgba(107, 107, 198, 0.6);
       }
     }
   }
@@ -645,15 +651,17 @@ body {
     }
 
     #projects {
-      padding-top: 2.5em;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      
       .projectBox {
-        width: 75%;
+        padding: 1em;
+        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+
         height: 10em;
         #techieChenIcon {
           border-radius: 30%;
@@ -667,7 +675,8 @@ body {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 1em;
+         padding-left: 1em;
+         padding-right: 1em;
           #upperTitle {
             color: black;
             #textRowOne {
@@ -684,8 +693,17 @@ body {
             font-weight: 600;
             text-decoration: underline;
           }
+
+          #checkTechieChen:hover {
+            cursor: pointer;
+          }
         }
       }
+
+      .projectBox:hover{
+        transform: scale(1.02);
+      }
+      
     }
   }
 }
