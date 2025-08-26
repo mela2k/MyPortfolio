@@ -64,7 +64,7 @@ const youtubeUrl = "https://www.youtube.com/@Sogasptr";
 const linkedinUrl = "https://www.linkedin.com/in/m-junchen/";
 const resumeUrl =
   "https://drive.google.com/file/d/1aVqvy_r0Lk4kmNjrjahPjLt8Pb2k0UI0/view?usp=drive_link";
-const techieChenUrl = "https://www.techiechen.nl/"
+const techieChenUrl = "https://www.techiechen.nl/";
 function openGithub() {
   window.open(gitHubUrl, "_blank");
 }
@@ -243,7 +243,9 @@ function setTheme(theme) {
 
       <div id="projects">
         <div class="projectBox" id="techieChenProject">
-          <div id="techieChenIcon"></div>
+          <div id="techieChenLogoBox">
+            <div id="techieChenIcon"></div>
+          </div>
           <div id="textBox">
             <div id="upperTitle">
               <p id="textRowOne">Techie Chen</p>
@@ -256,8 +258,6 @@ function setTheme(theme) {
             <p id="checkTechieChen" @click="openTechieChen">Check website</p>
           </div>
         </div>
-
-        
       </div>
     </div>
   </div>
@@ -655,28 +655,34 @@ body {
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      
+
       .projectBox {
         padding: 1em;
         width: 100%;
         display: flex;
         justify-content: space-between;
-
         height: 10em;
-        #techieChenIcon {
-          border-radius: 30%;
+
+        #techieChenLogoBox {
+          display: flex;
+          justify-content: center;
           height: 100%;
-          width: 20%;
-          background-image: url("../src/assets/techiechen.jpg");
-          background-size: cover;
-          background-position: center;
+          width: 50%;
+          #techieChenIcon {
+            width: 50%;
+            border-radius: 2em;
+            background-image: url("../src/assets/techiechen.jpg");
+            background-size: cover;
+            background-position: center;
+          }
         }
+
         #textBox {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-         padding-left: 1em;
-         padding-right: 1em;
+          padding-left: 1em;
+          padding-right: 1em;
           #upperTitle {
             color: black;
             #textRowOne {
@@ -700,10 +706,9 @@ body {
         }
       }
 
-      .projectBox:hover{
+      .projectBox:hover {
         transform: scale(1.02);
       }
-      
     }
   }
 }
