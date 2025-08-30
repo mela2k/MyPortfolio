@@ -671,7 +671,7 @@ body {
           #techieChenIcon {
             width: 50%;
             border-radius: 2em;
-            background-image: url("../src/assets/techiechen.jpg");
+            background-image: url("../src/assets/techiechen.png");
             background-size: cover;
             background-position: center;
           }
